@@ -1,0 +1,27 @@
+cfg: build triple x86_64-apple-darwin
+cfg: host triples x86_64-apple-darwin
+cfg: target triples x86_64-apple-darwin
+cfg: enabling more debugging (CFG_ENABLE_DEBUG)
+cfg: host for x86_64-apple-darwin is x86_64
+cfg: os for x86_64-apple-darwin is apple-darwin
+cfg: using clang
+cfg: no pandoc found, omitting docs
+cfg: no node found, omitting docs
+cfg: no llnextgen found, omitting grammar-verification
+make: cleaning llvm
+cfg: build triple x86_64-apple-darwin
+cfg: host triples x86_64-apple-darwin
+cfg: target triples x86_64-apple-darwin
+cfg: enabling more debugging (CFG_ENABLE_DEBUG)
+cfg: host for x86_64-apple-darwin is x86_64
+cfg: os for x86_64-apple-darwin is apple-darwin
+cfg: using clang
+cfg: no pandoc found, omitting docs
+cfg: no node found, omitting docs
+cfg: no llnextgen found, omitting grammar-verification
+cfg: including dist rules
+cfg: including snap rules
+cfg: including clean rules
+make[2]: *** No rule to make target `/Users/rstout/Dev/rust/rust/src/llvm/Users/rstout/dev/rust/rust/x86_64-apple-darwin/llvm/Makefile', needed by `Makefile'.  Stop.
+make[1]: *** [clean-llvmx86_64-apple-darwin] Error 2
+make: *** [/Users/rstout/Dev/rust/rust/x86_64-apple-darwin/llvm/llvm-auto-clean-stamp] Error 2
