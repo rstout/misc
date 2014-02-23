@@ -5,7 +5,7 @@ use std::io::extensions::ByteIterator;
 
 fn get_iter() -> ~Iterator<u8> {                                            
     let buf = ~[30u8, 31u8];                                                
-    let mut buf_reader: ~BufReader = ~BufReader::new(buf);                  
+    let mut buf_reader = ~BufReader::new(buf);                  
     let byte_iter = ~ByteIterator::new(buf_reader);                         
     let iter: ~Iterator<u8> = byte_iter as ~Iterator<u8>; // error                 
     iter                                                                  
