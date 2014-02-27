@@ -1,25 +1,22 @@
-// Rust 0.9
-
-use std::io::mem::BufReader;                                                
-use std::io::extensions::ByteIterator;
-
-fn get_iter() -> ~Iterator<u8> {                                            
-    let buf = ~[30u8, 31u8];                                                
-    let mut buf_reader = ~BufReader::new(buf);                  
-    let byte_iter = ~ByteIterator::new(buf_reader);                         
-    let iter: ~Iterator<u8> = byte_iter as ~Iterator<u8>; // error                 
-    iter                                                                  
-}       
+use std::io::BufReader;                                                         
+use std::io::extensions::Bytes;                                                 
+         
+// This doesn't work, but is there any way to turn a ~[u8] into a ~Iterator<u8>? (Maybe using 
+// Lifetimes, Gc or something else?)
+// I believe the issue is with 'buf_reader', in that it gets cleaned up after get_iter() returns
+fn get_iter(buf: ~[u8]) -> ~Iterator<u8> {                                      
+    let mut buf_reader = ~BufReader::new(buf);                                  
+    let byte_iter = ~Bytes::new(buf_reader);                                     
+    let iter = byte_iter as ~Iterator<u8>;                                      
+    iter                                                                        
+}                                                                               
 
 /*
-The above fails to compile with error:
+Comipler error message:
 
-scanner.rs:118:35: 118:44 error: cannot pack type `~std::io::extensions::ByteIterator<,std::io::mem::BufReader<>>`, which does not fulfill `Send`, as a trait bounded by Send
-scanner.rs:118         let iter: ~Iterator<u8> = byte_iter as ~Iterator<u8>;
-                                                 ^~~~~~~~~
+test.rs:8:16: 8:25 error: cannot pack type `~std::io::extensions::Bytes<,std::io::mem::BufReader<>>`, which does not fulfill `Send`, as a trait bounded by Send
+test.rs:8     let iter = byte_iter as ~Iterator<u8>;
+                         ^~~~~~~~~
 error: aborting due to previous error
-
-However, the doc for ByteIterator (http://static.rust-lang.org/doc/0.9/std/io/extensions/struct.ByteIterator.html)
-says that ByteIterator implements Iterator<u8>. So why is rustc complaining about not implementing Send? 
-(This is on rust 0.9 btw)
 */
+
