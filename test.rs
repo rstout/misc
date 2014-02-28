@@ -7,21 +7,21 @@
 // turning a file into a byte stream (file.bytes()). However, to test this,     
 // I'd rather not construct ~Iterator<u8>'s from files, but rather construct    
 // them from something like a ~[u8]. See the mocked up test mod at the bottom.  
-struct BufferedReader {                                                         
-    input: ~Iterator<u8>,                                                       
-    buf: ~[u8]                                                                  
+struct BufferedReader<T> {                                                         
+    input: ~Iterator<T>,                                                       
+    buf: ~[T]                                                                  
 }                                                                               
                                                                                 
 impl BufferedReader {                                                           
     // Reads from self.input and if not None, appends to self.buf               
-    fn next(&mut self) -> Option<u8> { /* impl */ }                             
+    fn next(&mut self) -> Option<T> { /* impl */ }                             
                                                                                 
     // Clears self.buf                                                          
     fn clear_buf(&mut self) { /* impl */ }                                      
 }                                                                               
                                                                                 
 mod test {                                                                      
-    fn make_buffered_reader(buf: ~[u8]) -> BufferedReader {                     
+    fn make_buffered_reader<T>(buf: ~[T]) -> BufferedReader<T> {                     
         // ???                                                                  
     }                                                                           
                                                                                 
